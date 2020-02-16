@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.TermosUsoActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2">
+
+
+        <TextView
+
+            android:id="@+id/termos_screen_texto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Aceite os termos de uso para continuarmos."
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:textSize="16pt" />
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <Button
+            style="@style/Input_style"
+            android:background="@drawable/button_red"
+            android:id="@+id/termos_screen_termos_uso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="termos de uso"
+            android:textAllCaps="false"
+            android:textColor="@color/buton_w_b"
+            android:onClick="termosUso"
+            ></Button>
+        <View
+            android:id="@+id/termos_screen_icone"
+            android:layout_width="84dp"
+            android:layout_height="59dp"
+            android:layout_below="@+id/termos_screen_termos_uso"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/icone">
+
+
+        </View>
+
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">easy Pay</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="wellcome">Bem Vindo!</string>
+    <string name="now_your_lifes_is_without_quere">agora sua vida é sem filas</string>
+    <string name="insert_name">Seu nome por favor</string>
+    <string name="hi">Olá</string>
+    <string name="fill_your_data">Preencha seus dados:</string>
+    <string name="cpf">CPF</string>
+    <string name="invalid">Inválido</string>
+    <string name="invalid_name">nome inválido!</string>
+    <string name="next">Próximo</string>
+    <string name="ja_tenho_uma_conta">Já Possuo conta</string>
+    <string name="great">Otimo</string>
+    <string name="lets_start">Vamos começar.</string>
+    <string name="password">senha</string>
+    <string name="email">Email</string>
+    <string name="fone">Telefone</string>
+    <string name="confirm_password">confirmar senha</string>
+</resources>
