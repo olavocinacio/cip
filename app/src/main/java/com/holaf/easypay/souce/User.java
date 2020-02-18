@@ -1,5 +1,6 @@
 package com.holaf.easypay.souce;
 
+import java.io.File;
 import java.io.Serializable;
 
 public class User implements Serializable {
@@ -49,5 +50,18 @@ public class User implements Serializable {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public void Save(String path,String pass) throws FileAlreadyExistSException {
+        String s = new String(path+'/'+SaveLogin.crip(email)+SaveLogin.crip(pass)+".ho");
+        if (new File(s).exists())
+            throw new FileAlreadyExistSException("usuario ja cadastrado");
+        SaveClass.save(this,s);
+    }
+
+    public static class FileAlreadyExistSException extends Exception {
+        public FileAlreadyExistSException(String usuario_ja_cadastrado) {
+            super(usuario_ja_cadastrado);
+        }
     }
 }

@@ -1,9 +1,13 @@
 package com.holaf.easypay.data.model;
 
+import com.holaf.easypay.souce.User;
+
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository
  */
 public class LoggedInUser {
+
+
 
     private String userId;
     private String displayName;

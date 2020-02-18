@@ -5,12 +5,14 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -22,13 +24,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.holaf.easypay.HomeActivity;
 import com.holaf.easypay.R;
+import com.holaf.easypay.data.LoginDataSource;
 import com.holaf.easypay.ui.login.LoginViewModel;
 import com.holaf.easypay.ui.login.LoginViewModelFactory;
+
+import java.io.Serializable;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
+    Intent nextScreen;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
-
+        nextScreen =  new Intent(getApplicationContext(), HomeActivity.class);
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
             public void onChanged(@Nullable LoginFormState loginFormState) {
@@ -103,7 +110,17 @@ public class LoginActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     loginViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
+                            passwordEditText.getText().toString(), new LoginDataSource.Logable() {
+                                @Override
+                                public String getPath() {
+                                    return Environment.getDataDirectory().getPath();
+                                }
+
+                                @Override
+                                public void d(Object o) {
+                                    nextScreen.putExtra("logUser",(Serializable) o);
+                                }
+                            });
                 }
                 return false;
             }
@@ -114,7 +131,17 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                        passwordEditText.getText().toString(), new LoginDataSource.Logable() {
+                            @Override
+                            public String getPath() {
+                                return getApplicationContext().getFilesDir().getAbsolutePath();
+                            }
+
+                            @Override
+                            public void d(Object o) {
+                                nextScreen.putExtra("logUser",(Serializable) o);
+                            }
+                        });
             }
         });
     }
@@ -123,6 +150,11 @@ public class LoginActivity extends AppCompatActivity {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+
+
+//        nextScreen.putExtra("logUser",
+        startActivity(nextScreen);
+        finish();
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {

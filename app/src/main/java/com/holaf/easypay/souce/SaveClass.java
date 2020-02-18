@@ -31,7 +31,21 @@ public final class SaveClass {
 
         }.start();
     }
-
+    public  static  Object load(String nameFile){
+        Object o = null;
+        try {
+            File f = new File(nameFile);
+            if (f.exists()) {
+                FileInputStream fout = new FileInputStream(f);
+                ObjectInputStream oos = new ObjectInputStream(fout);
+                o = oos.readObject();
+                oos.close();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return o;
+    }
     public static void load(final Activity activity, final String nameFile, final OnLoadListener onLoadListener) {
         new Thread() {
             @Override
